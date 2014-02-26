@@ -8,12 +8,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "kali"
 
   config.vm.provider :parallels do |parallels|
-    parallels.name = "HipHop VM"
     parallels.customize ["set", :id, "--memsize", "1024"]
   end
 
   config.vm.provider :virtualbox do |vb|
-    # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "65"]
     vb.gui = true
@@ -21,14 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "vmware_fusion" do |v, override|
     override.vm.box = "precise64_fusion"
-  end
-
-  #config.vm.provider :virtualbox do |vb|
-  config.vm.provider "virtualbox" do |vb|
-    # Use VBoxManage to customize the VM. For example to change memory:
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "65"]
-    vb.gui = true
   end
 
   config.ssh.forward_x11 = true
